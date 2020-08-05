@@ -15,7 +15,9 @@ navToggle.addEventListener('click', () => {
   // linksContainer.classList.toggle('show-links');
   const containerHeight = linksContainer.getBoundingClientRect().height
   const linksHeight = links.getBoundingClientRect().height
-  
+  console.log(containerHeight);
+  console.log(linksHeight)
+  // if containerHeight is currently 0, then set its height to be whatever the dynamic height is that we calcualted from the links. If it's not 0, i.e. the links are already expanded, then set it back equal to 0
   if(containerHeight === 0){
     linksContainer.style.height = `${linksHeight}px`
   } else {
@@ -25,5 +27,19 @@ navToggle.addEventListener('click', () => {
 
 // ********** fixed navbar ************
 
+const navbar = document.getElementById('nav');
+const topLink = document.querySelector('.top-link');
+
+window.addEventListener('scroll', () => {
+  console.log(window.pageYOffset);
+  const scrollHeight = window.pageYOffset;
+  const navHeight = navbar.getBoundingClientRect().height;
+  if(scrollHeight > navHeight){
+    navbar.classList.add('fixed-nav')
+  } else {
+    navbar.classList.remove('fixed-nav')
+  }
+
+})
 // ********** smooth scroll ************
 // select links
