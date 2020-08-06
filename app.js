@@ -15,10 +15,8 @@ navToggle.addEventListener('click', () => {
   // linksContainer.classList.toggle('show-links');
   const containerHeight = linksContainer.getBoundingClientRect().height
   const linksHeight = links.getBoundingClientRect().height
-  console.log(containerHeight);
-  console.log(linksHeight)
   // if containerHeight is currently 0, then set its height to be whatever the dynamic height is that we calcualted from the links. If it's not 0, i.e. the links are already expanded, then set it back equal to 0
-  if(containerHeight === 0){
+  if (containerHeight === 0) {
     linksContainer.style.height = `${linksHeight}px`
   } else {
     linksContainer.style.height = 0;
@@ -31,15 +29,14 @@ const navbar = document.getElementById('nav');
 const topLink = document.querySelector('.top-link');
 
 window.addEventListener('scroll', () => {
-  console.log(window.pageYOffset);
   const scrollHeight = window.pageYOffset;
   const navHeight = navbar.getBoundingClientRect().height;
-  if(scrollHeight > navHeight){
+  if (scrollHeight > navHeight) {
     navbar.classList.add('fixed-nav')
   } else {
     navbar.classList.remove('fixed-nav')
   }
-  if(scrollHeight > 500){
+  if (scrollHeight > 500) {
     topLink.classList.add('show-link')
   } else {
     topLink.classList.remove('show-link')
@@ -47,3 +44,15 @@ window.addEventListener('scroll', () => {
 })
 // ********** smooth scroll ************
 // select links
+
+const scrollLinks = document.querySelectorAll('.scroll-link');
+
+scrollLinks.forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    const id = e.currentTarget.getAttribute('href').slice(1);
+    const element = document.getElementById(id);
+    let position = element.offsetTop;
+    console.log(position)
+  })
+})
